@@ -1,0 +1,111 @@
+
+1. Papers used
+1. Zhao S., Zhang T., Ma S., Chen M. (2022). Dandelion Optimizer: A nature-inspired meta-heuristic algorithm for engineering applications. Engineering Applications of Artificial Intelligence, 114, 105075. doi:10.1016/j.engappai.2022.105075.
+2. Duan F., Basem A., Jasim D.J. et al. (2024). A new multi-objective-stochastic framework ... incorporating improved dandelion optimizer (IDO). Scientific Reports, 14, 20857.
+
+No metaheuristic library is used. All operators and update stages are implemented manually in code.
+
+2. What was implemented
+The application is a GUI laboratory for DO/IDO with step-by-step visualization:
+- objective function selection (sphere, rastrigin, ackley, rosenbrock)
+- configurable dimension N (dynamic number of variables)
+- sliders + textboxes + axis checkboxes for each variable
+- 2D visualization mode (exactly 2 selected variables)
+- 3D visualization mode (exactly 3 selected variables)
+- start / step / stop control
+- online and offline trace playback with forward/backward
+- agent movement paths (thin dashed lines) toggle
+- best solution visualization (star marker)
+- per-agent captions (agent numbers)
+- convergence and diversity timeline panel (additional visualization for mark 10)
+
+3. Code structure
+All logic is in one file: HW2/hw2_track2a_do_ido_gui.py.
+
+Sections:
+- DO/IDO step engine: DandelionStepper (class at line 208, step_once at line 279)
+- GUI window and controls: DOIDOApp (class at line 451)
+- Menu bar: _build_menu (line 519)
+- Toolbar: _build_toolbar (line 568)
+- Dynamic sliders/textboxes/checkboxes: _rebuild_variable_controls (line 748)
+- Start/Step/Stop and playback: on_start (line 907), on_step (line 938), on_backward (line 1006), on_forward (line 1019)
+- Landscape drawing + colorbar: _draw_landscape_background (line 1278)
+- Agent/best/path rendering: _draw_agents_overlay (line 1342)
+- Additional visualization panel: _draw_metrics_panel (line 1434)
+- Trace save/load (human-readable JSON): save_trace (line 422), load_trace (line 437), on_save_trace (line 1046), on_load_trace (line 1072)
+- Batch/headless output generator: run_batch_report (line 1507)
+
+
+4. How to run
+From project root (/Users/max/Downloads/DO_IDO):
+
+GUI mode
+
+python3 HW2/hw2_track2a_do_ido_gui.py
+
+
+Headless output generation (used for this report)
+
+python3 HW2/hw2_track2a_do_ido_gui.py --batch-report --outdir HW2
+
+
+5. Output files generated
+Inside HW2/ioData/:
+1. hw2_track2a_batch_results.json - benchmark summary results
+2. hw2_track2a_sample_trace.json - full recorded trace (human-readable) for playback
+3. hw2_track2a_sample_plot.png - static evidence figure (landscape + agents + best + convergence/diversity)
+
+6. Experimental outputs (batch mode)
+Source: HW2/ioData/hw2_track2a_batch_results.json
+
+| Example | Algo | Dim | Pop | Iters | Seed | Best fitness |
+|---|---:|---:|---:|---:|---:|---:|
+| sphere | DO | 30 | 30 | 200 | 0 | 4.3723589863018877e-16 |
+| sphere | IDO | 30 | 30 | 200 | 0 | 3.510324021719195e-87 |
+| rastrigin | DO | 30 | 40 | 250 | 0 | 0.0 |
+| rastrigin | IDO | 30 | 40 | 250 | 0 | 0.0 |
+| ackley | DO | 30 | 35 | 220 | 2 | 4.029221400969618e-12 |
+| ackley | IDO | 30 | 35 | 220 | 0 | 4.440892098500626e-16 |
+
+Observed behavior is consistent with HW1: IDO provides stronger exploitation on smooth landscapes and often reaches lower final error than baseline DO.
+
+7. Notes
+- The app is desktop standalone and does not require notebooks.
+- The trace format is human-readable JSON and suitable for LMS evidence.
+- Implementation is original and not based on pre-existing optimization GUI applications.
+
+8. References
+1. Zhao S., Zhang T., Ma S., Chen M. (2022). Engineering Applications of Artificial Intelligence, 114, 105075.
+2. Duan F., Basem A., Jasim D.J. et al. (2024). Scientific Reports, 14, 20857.
+3. NumPy documentation.
+4. Matplotlib documentation.
+5. Tkinter documentation.
+
+9. Summary 
+
+What was done:
+-  a standalone desktop GUI application (single file) for DO/IDO based on HW1.
+- Added all required controls: menu bar, toolbar, status bar, minimize/fullscreen/close.
+-  function visualization for N variables with sliders + textboxes + axis checkboxes.
+-  2D mode (2 selected axes) and 3D mode (3 selected axes) with interactive pan/zoom/rotate.
+-  step-by-step optimization flow (Start, Step, Stop), agent labels, best-solution marker, and dashed movement paths with toggle.
+-  trace recording and offline replay (Save Trace, Load Trace, Forward, Backward).
+- Added extra visualization for mark 10: convergence + diversity timeline with a current-step marker and timeline scrubber.
+
+Output files produced:
+- HW2/ioData/hw2_track2a_batch_results.json
+  Contains benchmark run settings and best fitness values.
+- HW2/ioData/hw2_track2a_sample_trace.json
+  Human-readable recorded trace of agents and best solution for replay.
+- HW2/ioData/hw2_track2a_sample_plot.png
+  Static evidence image showing function landscape, agents/best point, and timeline panel.
+
+Final numerical results:
+- Sphere DO (dim=30, pop=30, iters=200, seed=0): best_f = 4.3723589863018877e-16
+- Sphere IDO (dim=30, pop=30, iters=200, seed=0): best_f = 3.510324021719195e-87
+- Rastrigin DO (dim=30, pop=40, iters=250, seed=0): best_f = 0.0
+- Rastrigin IDO (dim=30, pop=40, iters=250, seed=0): best_f = 0.0
+- Ackley DO (dim=30, pop=35, iters=220, seed=2): best_f = 4.029221400969618e-12
+- Ackley IDO (dim=30, pop=35, iters=220, seed=0): best_f = 4.440892098500626e-16
+
+

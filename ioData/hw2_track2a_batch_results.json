@@ -1,0 +1,66 @@
+{
+  "created_at": "20260222-025428",
+  "description": "HW2 Track 2a batch output summary",
+  "results": [
+    {
+      "example": "sphere",
+      "algo": "DO",
+      "dim": 30,
+      "pop": 30,
+      "iters": 200,
+      "seed": 0,
+      "best_f": 4.3723589863018877e-16,
+      "iters_ran": 200
+    },
+    {
+      "example": "sphere",
+      "algo": "IDO",
+      "dim": 30,
+      "pop": 30,
+      "iters": 200,
+      "seed": 0,
+      "best_f": 3.510324021719195e-87,
+      "iters_ran": 200
+    },
+    {
+      "example": "rastrigin",
+      "algo": "DO",
+      "dim": 30,
+      "pop": 40,
+      "iters": 250,
+      "seed": 0,
+      "best_f": 0.0,
+      "iters_ran": 250
+    },
+    {
+      "example": "rastrigin",
+      "algo": "IDO",
+      "dim": 30,
+      "pop": 40,
+      "iters": 250,
+      "seed": 0,
+      "best_f": 0.0,
+      "iters_ran": 250
+    },
+    {
+      "example": "ackley",
+      "algo": "DO",
+      "dim": 30,
+      "pop": 35,
+      "iters": 220,
+      "seed": 2,
+      "best_f": 4.029221400969618e-12,
+      "iters_ran": 220
+    },
+    {
+      "example": "ackley",
+      "algo": "IDO",
+      "dim": 30,
+      "pop": 35,
+      "iters": 220,
+      "seed": 0,
+      "best_f": 4.440892098500626e-16,
+      "iters_ran": 220
+    }
+  ]
+}

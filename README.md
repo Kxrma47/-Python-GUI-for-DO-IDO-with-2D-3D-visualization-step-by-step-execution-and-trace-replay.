@@ -22,7 +22,7 @@ Python desktop GUI for Dandelion Optimizer (DO) and Improved Dandelion Optimizer
 - tkinter (or `tk` package in conda)
 
 ## Install
-```bash
+
 conda install -n base -c conda-forge numpy matplotlib tk -y
 ```
 or
